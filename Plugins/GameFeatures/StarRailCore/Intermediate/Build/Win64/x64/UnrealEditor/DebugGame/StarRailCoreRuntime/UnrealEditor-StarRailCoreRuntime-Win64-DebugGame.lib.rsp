@@ -1,0 +1,12 @@
+/NOLOGO
+/errorReport:prompt
+/MACHINE:x64
+/SUBSYSTEM:WINDOWS
+/DEF
+/NAME:"UnrealEditor-StarRailCoreRuntime-Win64-DebugGame.dll"
+/IGNORE:4221
+/NODEFAULTLIB
+"F:\UE5_Work\Aura\Intermediate\Build\Win64\x64\AuraEditor\DebugGame\Engine\SharedPCH.Engine.NonOptimized.Cpp20.InclOrderUnreal5_0.h.obj"
+"F:\UE5_Work\Aura\Plugins\GameFeatures\StarRailCore\Intermediate\Build\Win64\x64\UnrealEditor\DebugGame\StarRailCoreRuntime\Module.StarRailCoreRuntime.cpp.obj"
+"F:\UE5_Work\Aura\Plugins\GameFeatures\StarRailCore\Intermediate\Build\Win64\x64\UnrealEditor\DebugGame\StarRailCoreRuntime\Default.rc2.res"
+/OUT:"F:\UE5_Work\Aura\Plugins\GameFeatures\StarRailCore\Intermediate\Build\Win64\x64\UnrealEditor\DebugGame\StarRailCoreRuntime\UnrealEditor-StarRailCoreRuntime-Win64-DebugGame.lib"

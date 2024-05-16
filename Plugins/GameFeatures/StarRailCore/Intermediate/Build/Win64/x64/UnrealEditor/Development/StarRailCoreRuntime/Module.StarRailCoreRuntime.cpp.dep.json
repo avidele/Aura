@@ -1,0 +1,21 @@
+{
+    "Version": "1.2",
+    "Data": {
+        "Source": "f:\\ue5_work\\aura5.4\\aura\\plugins\\gamefeatures\\starrailcore\\intermediate\\build\\win64\\x64\\unrealeditor\\development\\starrailcoreruntime\\module.starrailcoreruntime.cpp",
+        "ProvidedModule": "",
+        "PCH": "f:\\ue5_work\\aura5.4\\aura\\intermediate\\build\\win64\\x64\\auraeditor\\development\\unrealed\\sharedpch.unrealed.project.valapi.cpp20.h.pch",
+        "Includes": [
+            "f:\\ue5_work\\aura5.4\\aura\\plugins\\gamefeatures\\starrailcore\\intermediate\\build\\win64\\x64\\unrealeditor\\development\\starrailcoreruntime\\definitions.starrailcoreruntime.h",
+            "f:\\ue5_work\\aura5.4\\aura\\plugins\\gamefeatures\\starrailcore\\intermediate\\build\\win64\\unrealeditor\\inc\\starrailcoreruntime\\uht\\starrailcoreruntime.init.gen.cpp",
+            "f:\\ue5_work\\aura5.4\\aura\\plugins\\gamefeatures\\starrailcore\\intermediate\\build\\win64\\unrealeditor\\inc\\starrailcoreruntime\\uht\\starrailplayerstart.gen.cpp",
+            "f:\\ue5_work\\aura5.4\\aura\\plugins\\gamefeatures\\starrailcore\\source\\starrailcoreruntime\\public\\game\\starrailplayerstart.h",
+            "g:\\ue5\\ue_5.4\\engine\\source\\runtime\\engine\\classes\\gameframework\\playerstart.h",
+            "g:\\ue5\\ue_5.4\\engine\\source\\runtime\\engine\\classes\\engine\\navigationobjectbase.h",
+            "g:\\ue5\\ue_5.4\\engine\\intermediate\\build\\win64\\unrealeditor\\inc\\engine\\uht\\navigationobjectbase.generated.h",
+            "g:\\ue5\\ue_5.4\\engine\\intermediate\\build\\win64\\unrealeditor\\inc\\engine\\uht\\playerstart.generated.h",
+            "f:\\ue5_work\\aura5.4\\aura\\plugins\\gamefeatures\\starrailcore\\intermediate\\build\\win64\\unrealeditor\\inc\\starrailcoreruntime\\uht\\starrailplayerstart.generated.h"
+        ],
+        "ImportedModules": [],
+        "ImportedHeaderUnits": []
+    }
+}

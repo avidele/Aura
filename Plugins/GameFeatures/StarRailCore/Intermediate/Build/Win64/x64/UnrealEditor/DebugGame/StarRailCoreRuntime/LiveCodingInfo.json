@@ -1,0 +1,11 @@
+{
+	"RemapUnityFiles": 
+	{
+		"Module.StarRailCoreRuntime.cpp.obj": [
+			"StarRailCoreRuntime.init.gen.cpp.obj",
+			"StarRailPlayerStart.gen.cpp.obj",
+			"StarRailPlayerStart.cpp.obj",
+			"StarRailCoreRuntimeModule.cpp.obj"
+		]
+	}
+}
