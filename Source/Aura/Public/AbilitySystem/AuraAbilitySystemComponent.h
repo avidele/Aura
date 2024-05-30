@@ -7,6 +7,7 @@
 #include "AuraAbilitySystemComponent.generated.h"
 
 DECLARE_MULTICAST_DELEGATE_OneParam(FEffectAssetTags, const FGameplayTagContainer& /*AssetTags*/);
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_ThreeParams(FReceivedDamageDelegate, UAuraAbilitySystemComponent*, SourceASC, float, UnmitigatedDamage, float, MitigatedDamage);
 /**
  * 
  */
@@ -21,6 +22,9 @@ public:
 	void AddCharacterAbilities(const TArray<TSubclassOf<UGameplayAbility>>& StartupAbilities);
 	void AbilityInputTagHeld(const FGameplayTag& InputTag);
 	void AbilityInputTagReleased(const FGameplayTag& InputTag);
+
+	FReceivedDamageDelegate ReceivedDamage;
+	virtual void ReceiveDamage(UAuraAbilitySystemComponent* SourceASC, float UnmitigatedDamage, float MitigatedDamage);
 	
 protected:
 	UFUNCTION(Client, Reliable)

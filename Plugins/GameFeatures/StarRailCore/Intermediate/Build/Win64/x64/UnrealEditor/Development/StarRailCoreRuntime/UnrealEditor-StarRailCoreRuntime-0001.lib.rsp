@@ -1,0 +1,12 @@
+/NOLOGO
+/errorReport:prompt
+/MACHINE:x64
+/SUBSYSTEM:WINDOWS
+/DEF
+/NAME:"UnrealEditor-StarRailCoreRuntime-0001.dll"
+/IGNORE:4221
+/NODEFAULTLIB
+"F:\UE5_Work\Aura5.4\Aura\Intermediate\Build\Win64\x64\AuraEditor\Development\UnrealEd\SharedPCH.UnrealEd.Project.ValApi.Cpp20.h.obj"
+"F:\UE5_Work\Aura5.4\Aura\Plugins\GameFeatures\StarRailCore\Intermediate\Build\Win64\x64\UnrealEditor\Development\StarRailCoreRuntime\Module.StarRailCoreRuntime.cpp.obj"
+"F:\UE5_Work\Aura5.4\Aura\Plugins\GameFeatures\StarRailCore\Intermediate\Build\Win64\x64\UnrealEditor\Development\StarRailCoreRuntime\Default.rc2.res"
+/OUT:"F:\UE5_Work\Aura5.4\Aura\Plugins\GameFeatures\StarRailCore\Intermediate\Build\Win64\x64\UnrealEditor\Development\StarRailCoreRuntime\UnrealEditor-StarRailCoreRuntime-0001.lib"

@@ -55,8 +55,14 @@ void UAuraAbilitySystemComponent::AbilityInputTagReleased(const FGameplayTag& In
 	}
 }
 
+void UAuraAbilitySystemComponent::ReceiveDamage(UAuraAbilitySystemComponent* SourceASC, float UnmitigatedDamage,
+	float MitigatedDamage)
+{
+	ReceivedDamage.Broadcast(SourceASC, UnmitigatedDamage, MitigatedDamage);
+}
+
 void UAuraAbilitySystemComponent::ClientEffectApplied_Implementation(UAbilitySystemComponent* AbilitySystemComponent,
-                                                const FGameplayEffectSpec& EffectSpec, FActiveGameplayEffectHandle ActiveGameplayEffectHandle) const
+                                                                     const FGameplayEffectSpec& EffectSpec, FActiveGameplayEffectHandle ActiveGameplayEffectHandle) const
 {
 	GEngine->AddOnScreenDebugMessage(1,8.f,FColor::Blue,FString("Effect Applied"));
 	FGameplayTagContainer TagContainer;

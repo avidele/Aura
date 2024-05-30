@@ -13,7 +13,10 @@
             "g:\\ue5\\ue_5.4\\engine\\source\\runtime\\engine\\classes\\engine\\navigationobjectbase.h",
             "g:\\ue5\\ue_5.4\\engine\\intermediate\\build\\win64\\unrealeditor\\inc\\engine\\uht\\navigationobjectbase.generated.h",
             "g:\\ue5\\ue_5.4\\engine\\intermediate\\build\\win64\\unrealeditor\\inc\\engine\\uht\\playerstart.generated.h",
-            "f:\\ue5_work\\aura5.4\\aura\\plugins\\gamefeatures\\starrailcore\\intermediate\\build\\win64\\unrealeditor\\inc\\starrailcoreruntime\\uht\\starrailplayerstart.generated.h"
+            "f:\\ue5_work\\aura5.4\\aura\\plugins\\gamefeatures\\starrailcore\\intermediate\\build\\win64\\unrealeditor\\inc\\starrailcoreruntime\\uht\\starrailplayerstart.generated.h",
+            "f:\\ue5_work\\aura5.4\\aura\\plugins\\gamefeatures\\starrailcore\\source\\starrailcoreruntime\\private\\game\\starrailplayerstart.cpp",
+            "f:\\ue5_work\\aura5.4\\aura\\plugins\\gamefeatures\\starrailcore\\source\\starrailcoreruntime\\private\\starrailcoreruntimemodule.cpp",
+            "f:\\ue5_work\\aura5.4\\aura\\plugins\\gamefeatures\\starrailcore\\source\\starrailcoreruntime\\public\\starrailcoreruntimemodule.h"
         ],
         "ImportedModules": [],
         "ImportedHeaderUnits": []

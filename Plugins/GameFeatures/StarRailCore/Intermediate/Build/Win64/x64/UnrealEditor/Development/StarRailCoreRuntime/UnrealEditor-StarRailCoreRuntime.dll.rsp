@@ -37,8 +37,6 @@
 /FUNCTIONPADMIN:6
 "F:\UE5_Work\Aura5.4\Aura\Intermediate\Build\Win64\x64\AuraEditor\Development\UnrealEd\SharedPCH.UnrealEd.Project.ValApi.Cpp20.h.obj"
 "F:\UE5_Work\Aura5.4\Aura\Plugins\GameFeatures\StarRailCore\Intermediate\Build\Win64\x64\UnrealEditor\Development\StarRailCoreRuntime\Module.StarRailCoreRuntime.cpp.obj"
-"F:\UE5_Work\Aura5.4\Aura\Plugins\GameFeatures\StarRailCore\Intermediate\Build\Win64\x64\UnrealEditor\Development\StarRailCoreRuntime\StarRailCoreRuntimeModule.cpp.obj"
-"F:\UE5_Work\Aura5.4\Aura\Plugins\GameFeatures\StarRailCore\Intermediate\Build\Win64\x64\UnrealEditor\Development\StarRailCoreRuntime\StarRailPlayerStart.cpp.obj"
 "F:\UE5_Work\Aura5.4\Aura\Plugins\GameFeatures\StarRailCore\Intermediate\Build\Win64\x64\UnrealEditor\Development\StarRailCoreRuntime\Default.rc2.res"
 "..\Intermediate\Build\Win64\x64\UnrealEditor\Development\CoreUObject\UnrealEditor-CoreUObject.lib"
 "..\Intermediate\Build\Win64\x64\UnrealEditor\Development\Engine\UnrealEditor-Engine.lib"

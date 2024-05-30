@@ -1,6 +1,8 @@
 ﻿#include "AbilitySystem/Abilities/AuraProjectileSpell.h"
 
+#include "AbilitySystemComponent.h"
 #include "Actor/AuraProjectile.h"
+#include "Character/AuraCharacterBase.h"
 #include "Interaction/CombatInterface.h"
 #include "Kismet/KismetSystemLibrary.h"
 
@@ -38,9 +40,11 @@ void UAuraProjectileSpell::SpawnProjectile(
 				ProjectileClass, SpawnTransform, GetOwningActorFromActorInfo(),
 				Cast<APawn>(GetOwningActorFromActorInfo()),
 				ESpawnActorCollisionHandlingMethod::AlwaysSpawn);
-
-		// TODO: Give the Projectile a Gameplay Effect Spec for causing Damage.
-
+		Projectile->Level = GetAbilityLevel();
 		Projectile->FinishSpawning(SpawnTransform);
 	}
 }
+
+
+
+

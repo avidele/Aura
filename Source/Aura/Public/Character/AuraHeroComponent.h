@@ -28,9 +28,9 @@ class AURA_API UAuraHeroComponent : public UPawnComponent
 public:
 	UPROPERTY(EditAnywhere,Category = "AttackMontage")
 	TObjectPtr<UAnimMontage> AttackMontage;
-	
+
 	UFUNCTION(BlueprintCallable,Category = "AttackComponent")
-	virtual void Attack();
+	void ClientAttack();
 	
 	//Debug line
 	UPROPERTY(EditAnywhere,Category="Debug")
@@ -49,7 +49,8 @@ public:
 
 	UFUNCTION(BlueprintCallable, Category = "Attack",DisplayName = "Attack End")
 	void AttackEnd();
-	
+
+	void MakeAttackAdsorption() const;
 private:
 	bool bWantContinueAttack;
 	int CurrentAttackMontageSection;

@@ -13,9 +13,15 @@ void UAuraCyberCombo::ActivateAbility(const FGameplayAbilitySpecHandle Handle,
                                       const FGameplayEventData* TriggerEventData)
 {
 	Super::ActivateAbility(Handle, ActorInfo, ActivationInfo, TriggerEventData);
+	
 	if (const AAuraCharacter* AvatarActor = Cast<AAuraCharacter>(GetAvatarActorFromActorInfo()))
 	{
+		FGameplayEffectSpecHandle DamageEffectSpecHandle = MakeOutgoingGameplayEffectSpec(DamageGameplayEffect, GetAbilityLevel());
+		//	DamageEffectSpecHandle.Data.Get()->SetSetByCallerMagnitude(FGameplayTag::RequestGameplayTag(FName("Attribute_Primary_Strength"),true), Damage);
+		AvatarActor->DamageEffectSpecHandle = DamageEffectSpecHandle;
 		UAuraHeroComponent* AuraHeroComponent = AvatarActor->GetCombatComponent();
-		AuraHeroComponent->Attack();
+		AuraHeroComponent->ClientAttack();
 	}
+	EndAbility(Handle, ActorInfo, ActivationInfo, true, true);
 }
+
