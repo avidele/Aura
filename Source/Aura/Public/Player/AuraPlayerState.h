@@ -7,6 +7,7 @@
 #include "GameFramework/PlayerState.h"
 #include "AuraPlayerState.generated.h"
 
+struct FGameplayEffectSpec;
 class UAuraHeroComponent;
 class UAbilitySystemComponent;
 class UAttributeSet;
@@ -23,7 +24,6 @@ public:
 	virtual UAbilitySystemComponent* GetAbilitySystemComponent() const override;
 	UAttributeSet* GetAttributeSet() const { return AttributeSet; }
 	int32 GetPlayerLevel() const;
-	UAuraHeroComponent* GetHeroCombatComponent();
 
 protected:
 	UPROPERTY(VisibleAnywhere)
@@ -32,8 +32,6 @@ protected:
 	UPROPERTY()
 	TObjectPtr<UAttributeSet> AttributeSet;
 
-	UPROPERTY(EditAnywhere, Category = "Combat")
-	TObjectPtr<UAuraHeroComponent> HeroComponent;
 private:
 	UPROPERTY(VisibleAnywhere, ReplicatedUsing = OnRep_Level)
 	int32 Level = 1;

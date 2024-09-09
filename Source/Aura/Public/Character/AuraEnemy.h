@@ -43,4 +43,12 @@ protected:
 	
 	UPROPERTY(EditAnywhere)
 	TObjectPtr<UWidgetComponent> HealthBar;
+
+	//TPointer -> Access Tracking & Lazy Loading
+	//USkeletalMeshComponent* Weapon;
+	UPROPERTY(EditAnywhere, Category = "Combat")
+	TObjectPtr<USkeletalMeshComponent> Weapon;
+
+	virtual FVector GetCombatSocketLocation() override;
+
 };

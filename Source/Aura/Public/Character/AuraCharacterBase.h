@@ -30,15 +30,8 @@ public:
 protected:
 	virtual void BeginPlay() override;
 
-	//TPointer -> Access Tracking & Lazy Loading
-	//USkeletalMeshComponent* Weapon;
-	UPROPERTY(EditAnywhere, Category = "Combat")
-	TObjectPtr<USkeletalMeshComponent> Weapon;
-
 	UPROPERTY(EditAnywhere, Category = "Combat")
 	FName WeaponSocketName;
-
-	virtual FVector GetCombatSocketLocation() override;
 
 	UPROPERTY()
 	TObjectPtr<UAbilitySystemComponent> AbilitySystem;

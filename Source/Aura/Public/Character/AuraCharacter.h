@@ -30,6 +30,9 @@ public:
 	UPROPERTY(EditAnywhere, Category = "Combat")
 	TObjectPtr<UStaticMeshComponent> R_Weapon;
 
+	UFUNCTION(BlueprintImplementableEvent)
+	void OnAttackEnd();
+	
 	/** Combat Interface */
 	virtual int32 GetPlayerLevel() override;
 	/** End Combat Interface */
@@ -37,6 +40,8 @@ private:
 	virtual void InitAbilityActorInfo() override;
 
 protected:
+	UPROPERTY(EditAnywhere, Category = "Combat")
+	TObjectPtr<UAuraHeroComponent> HeroComponent;
+	
 	virtual void InitializeDefaultAttributes() const override;
-
 };

@@ -20,24 +20,26 @@ AAuraEnemy::AAuraEnemy()
 	
 	HealthBar = CreateDefaultSubobject<UWidgetComponent>(TEXT("HealthBar"));
 	HealthBar->SetupAttachment(GetRootComponent());
+
+	Weapon = CreateDefaultSubobject<USkeletalMeshComponent>("Weapon");
+	Weapon->SetupAttachment(GetMesh(), FName("WeaponHandSocket"));
+	Weapon->SetCollisionEnabled(ECollisionEnabled::NoCollision);
 	// HealthBar->SetWidgetClass(HealthBarClass);
 	// HealthBar->SetWidgetSpace(EWidgetSpace::Screen);
 	// HealthBar->SetDrawSize(FVector2D(100, 10));
-
-	
 }
 void AAuraEnemy::HighlightActor()
 {
 	GetMesh()->SetRenderCustomDepth(true);
 	GetMesh()->SetCustomDepthStencilValue(CUSTOM_DEPTH_RED);
-	Weapon->SetRenderCustomDepth(true);
-	Weapon->SetCustomDepthStencilValue(CUSTOM_DEPTH_RED);
+	// Weapon->SetRenderCustomDepth(true);
+	// Weapon->SetCustomDepthStencilValue(CUSTOM_DEPTH_RED);
 }
 
 void AAuraEnemy::UnHighlightActor()
 {
 	GetMesh()->SetRenderCustomDepth(false);
-	Weapon->SetRenderCustomDepth(false);
+	// Weapon->SetRenderCustomDepth(false);
 }
 
 int32 AAuraEnemy::GetPlayerLevel()
@@ -78,4 +80,10 @@ void AAuraEnemy::InitAbilityActorInfo()
 	AbilitySystem->InitAbilityActorInfo(this,this);
 	Cast<UAuraAbilitySystemComponent>(AbilitySystem)->AbilityActorInfoSet();
 	ApplyEffectToSelf(DefaultPrimaryAttributes,1.f);
+}
+
+FVector AAuraEnemy::GetCombatSocketLocation()
+{
+	check(IsValid(Weapon));
+	return Weapon->GetSocketLocation(WeaponSocketName);
 }

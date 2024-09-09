@@ -4,6 +4,7 @@
 #include "Character/AuraHeroComponent.h"
 
 #include "AbilitySystemComponent.h"
+#include "Character/AuraCharacter.h"
 #include "Character/AuraCharacterBase.h"
 #include "GameFramework/Character.h"
 #include "Kismet/KismetMathLibrary.h"
@@ -12,13 +13,11 @@
 
 void UAuraHeroComponent::ClientAttack()
 {
-	const auto PlayerState = Cast<AAuraPlayerState>(GetOwner());
-	const auto OwnerPawn = Cast<AAuraPlayerController>(PlayerState->GetOwner())->GetPawn();
-	const auto OwnerCharacter = Cast<ACharacter>(OwnerPawn);
+	const auto OwnerCharacter = Cast<AAuraCharacter>(GetOwner());
 	if (!AttackMontage || !OwnerCharacter) return;
-	if (GetOwnerRole() == ROLE_AutonomousProxy)
+	if(GetOwnerRole() == ROLE_AutonomousProxy)
 	{
-		GEngine->AddOnScreenDebugMessage(-1, 3.f, FColor::Blue, TEXT("Client Attack"));
+		ServerAttack();
 	}
 	else if (GetOwnerRole() == ROLE_Authority)
 	{
@@ -37,10 +36,9 @@ void UAuraHeroComponent::ClientAttack()
 			bWantContinueAttack = true;
 		}
 	}
-	else if (GetOwnerRole() == ROLE_SimulatedProxy)
+	else if(GetOwnerRole() == ROLE_SimulatedProxy)
 	{
-		OwnerCharacter->PlayAnimMontage(AttackMontage, 2.f, AttackMontage->GetSectionName(CurrentAttackMontageSection));
-		GEngine->AddOnScreenDebugMessage(-1, 3.f, FColor::Blue, TEXT("SimulatedProxy Attack"));
+		ServerAttack();
 	}
 	else
 	{
@@ -48,6 +46,30 @@ void UAuraHeroComponent::ClientAttack()
 	}
 }
 
+
+void UAuraHeroComponent::ServerAttack_Implementation()
+{
+	MulticastAttack();
+}
+
+void UAuraHeroComponent::MulticastAttack_Implementation()
+{
+	const auto OwnerCharacter = Cast<AAuraCharacter>(GetOwner());
+	if (CurrentState != ECombat_State::Attack)
+	{
+		ChangeCombatState(ECombat_State::Attack);
+		bWantContinueAttack = false;
+		CurrentAttackMontageSection = 0;
+		MakeAttackAdsorption();
+		OwnerCharacter->PlayAnimMontage(AttackMontage, 2.f,
+										AttackMontage->GetSectionName(CurrentAttackMontageSection));
+	}
+	else if (CurrentState == ECombat_State::Attack && CurrentAttackMontageSection < AttackMontage->GetNumSections()
+		- 1)
+	{
+		bWantContinueAttack = true;
+	}
+}
 
 bool UAuraHeroComponent::ChangeCombatState(F_Combat_State NextState)
 {
@@ -57,9 +79,7 @@ bool UAuraHeroComponent::ChangeCombatState(F_Combat_State NextState)
 
 void UAuraHeroComponent::AttackEnd()
 {
-	const auto PlayerState = Cast<AAuraPlayerState>(GetOwner());
-	const auto OwnerPawn = Cast<AAuraPlayerController>(PlayerState->GetOwner())->GetPawn();
-	if (const auto OwnerCharacter = Cast<ACharacter>(OwnerPawn); OwnerCharacter && bWantContinueAttack)
+	if (const auto OwnerCharacter = Cast<ACharacter>(GetOwner()); OwnerCharacter && bWantContinueAttack)
 	{
 		bWantContinueAttack = false;
 		if (CurrentAttackMontageSection == AttackMontage->GetNumSections() - 1)
@@ -78,15 +98,17 @@ void UAuraHeroComponent::AttackEnd()
 	}
 	else if (!bWantContinueAttack)
 	{
+		if (const auto AuraCharacter = Cast<AAuraCharacter>(OwnerCharacter))
+		{
+			AuraCharacter->OnAttackEnd();
+		}
 		ChangeCombatState(ECombat_State::Idle);
 	}
 }
 
 void UAuraHeroComponent::MakeAttackAdsorption() const
 {
-	const auto PlayerState = Cast<AAuraPlayerState>(GetOwner());
-	const auto OwnerPawn = Cast<AAuraPlayerController>(PlayerState->GetOwner())->GetPawn();
-	if (const auto OwnerCharacter = Cast<ACharacter>(OwnerPawn))
+	if (const auto OwnerCharacter = Cast<ACharacter>(GetOwner()))
 	{
 		const FVector Start = OwnerCharacter->GetActorLocation();
 		TArray<FHitResult> HitResults;

@@ -6,7 +6,6 @@
 #include "AbilitySystemComponent.h"
 #include "AbilitySystem/AuraAbilitySystemComponent.h"
 #include "Character/AuraHeroComponent.h"
-#include "Components/WidgetComponent.h"
 #include "GameFramework/CharacterMovementComponent.h"
 #include "Player/AuraPlayerController.h"
 #include "Player/AuraPlayerState.h"
@@ -14,11 +13,12 @@
 
 AAuraCharacter::AAuraCharacter()
 {
-	GetCharacterMovement()->bOrientRotationToMovement = true;
-	GetCharacterMovement()->RotationRate = FRotator(0.f, 400.f, 0.f);
-	GetCharacterMovement()->bConstrainToPlane = true;
-	GetCharacterMovement()->bSnapToPlaneAtStart = true;
-
+	UCharacterMovementComponent* AuraCharacterMovementComponent = GetCharacterMovement();
+	AuraCharacterMovementComponent ->bOrientRotationToMovement = true;
+	AuraCharacterMovementComponent ->RotationRate = FRotator(0.f, 400.f, 0.f);
+	AuraCharacterMovementComponent ->bConstrainToPlane = true;
+	AuraCharacterMovementComponent ->bSnapToPlaneAtStart = true;
+	
 	bUseControllerRotationPitch = false;
 	bUseControllerRotationYaw = false;
 	bUseControllerRotationRoll = false;
@@ -30,13 +30,14 @@ AAuraCharacter::AAuraCharacter()
 	R_Weapon = CreateDefaultSubobject<UStaticMeshComponent>("R_Weapon");
 	R_Weapon->SetupAttachment(GetMesh(), FName("RightWeaponSocket"));
 	R_Weapon->SetCollisionEnabled(ECollisionEnabled::NoCollision);
-	
+
+	HeroComponent = CreateDefaultSubobject<UAuraHeroComponent>("HeroComponent");
+	HeroComponent->SetIsReplicated(true);
 }
 
 UAuraHeroComponent* AAuraCharacter::GetCombatComponent() const
 {
-	AAuraPlayerState* AuraPlayerState = GetPlayerState<AAuraPlayerState>();
-	return AuraPlayerState->GetHeroCombatComponent();
+	return HeroComponent;
 }
 
 void AAuraCharacter::PossessedBy(AController* NewController)

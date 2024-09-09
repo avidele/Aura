@@ -13,11 +13,8 @@ AAuraPlayerState::AAuraPlayerState()
 	AbilitySystem = CreateDefaultSubobject<UAuraAbilitySystemComponent>("AuraAbilitySystem");
 	AbilitySystem->SetIsReplicated(true);
 	AbilitySystem->SetReplicationMode(EGameplayEffectReplicationMode::Mixed);
-	
 	AttributeSet = CreateDefaultSubobject<UAuraAttributeSet>("Attribute Set");
 	NetUpdateFrequency = 100.f;
-
-	HeroComponent = CreateDefaultSubobject<UAuraHeroComponent>("HeroComponent");
 	AbilitySystem->SetIsReplicated(true);
 }
 
@@ -41,7 +38,4 @@ int32 AAuraPlayerState::GetPlayerLevel() const
 	return Level;
 }
 
-UAuraHeroComponent* AAuraPlayerState::GetHeroCombatComponent()
-{
-	return HeroComponent;
-}
+

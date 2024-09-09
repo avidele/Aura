@@ -1,6 +1,6 @@
 {
 	"FileVersion": 3,
-	"EngineAssociation": "5.4",
+	"EngineAssociation": "{0BF7329B-427D-2636-AC17-E087B559A550}",
 	"Category": "",
 	"Description": "",
 	"Modules": [
@@ -40,10 +40,6 @@
 		},
 		{
 			"Name": "ModularGameplay",
-			"Enabled": true
-		},
-		{
-			"Name": "StarRailCore",
 			"Enabled": true
 		}
 	]

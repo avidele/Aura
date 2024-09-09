@@ -42,6 +42,12 @@ public:
 	UPROPERTY(EditAnywhere,Category="AttackPerformance",meta=(EditCondition = "bUseTrailParticle"))
 	UParticleSystem* TrailParticle;
 
+	// Call On Server
+	UFUNCTION(Server,Reliable)
+	void ServerAttack();
+
+	UFUNCTION(NetMulticast,Reliable)
+	void MulticastAttack();
 public:	
 	typedef int32 F_Combat_State;
 	F_Combat_State CurrentState ;
@@ -51,6 +57,7 @@ public:
 	void AttackEnd();
 
 	void MakeAttackAdsorption() const;
+
 private:
 	bool bWantContinueAttack;
 	int CurrentAttackMontageSection;

@@ -29,7 +29,7 @@ protected:
 	virtual void BeginPlay() override;
 	virtual void SetupInputComponent() override;
 	void Look(const FInputActionValue& InputActionValue);
-
+	void Jump(const FInputActionValue& InputActionValue);
 private:
 	UPROPERTY(EditAnywhere, Category = "Input")
 	TObjectPtr<UInputMappingContext> AuraContext;
@@ -39,6 +39,9 @@ private:
 	
 	UPROPERTY(EditAnywhere, Category = "Input")
 	TObjectPtr<UInputAction> LookAction;
+
+	UPROPERTY(EditAnywhere, Category = "Input")
+	TObjectPtr<UInputAction> JumpAction;
 	
 	void Move(const FInputActionValue& InputActionValue);
 	void CursorTrace();
