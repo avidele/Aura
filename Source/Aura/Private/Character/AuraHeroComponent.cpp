@@ -18,32 +18,22 @@ void UAuraHeroComponent::ClientAttack()
 	if(GetOwnerRole() == ROLE_AutonomousProxy)
 	{
 		ServerAttack();
+		GEngine->AddOnScreenDebugMessage(-1, 3.f, FColor::Blue, TEXT("AutonomousProxy"));
 	}
 	else if (GetOwnerRole() == ROLE_Authority)
 	{
-		if (CurrentState != ECombat_State::Attack)
-		{
-			ChangeCombatState(ECombat_State::Attack);
-			bWantContinueAttack = false;
-			CurrentAttackMontageSection = 0;
-			MakeAttackAdsorption();
-			OwnerCharacter->PlayAnimMontage(AttackMontage, 2.f,
-			                                AttackMontage->GetSectionName(CurrentAttackMontageSection));
-		}
-		else if (CurrentState == ECombat_State::Attack && CurrentAttackMontageSection < AttackMontage->GetNumSections()
-			- 1)
-		{
-			bWantContinueAttack = true;
-		}
+		MulticastAttack();
+		GEngine->AddOnScreenDebugMessage(-1, 3.f, FColor::Blue, TEXT("Authority"));
 	}
-	else if(GetOwnerRole() == ROLE_SimulatedProxy)
-	{
-		ServerAttack();
-	}
-	else
-	{
-		GEngine->AddOnScreenDebugMessage(-1, 3.f, FColor::Blue, TEXT("No Role"));
-	}
+	// else if(GetOwnerRole() == ROLE_SimulatedProxy)
+	// {
+	// 	ServerAttack();
+	// 	GEngine->AddOnScreenDebugMessage(-1, 3.f, FColor::Blue, TEXT("SimulatedProxy"));
+	// }
+	// else
+	// {
+	// 	GEngine->AddOnScreenDebugMessage(-1, 3.f, FColor::Blue, TEXT("No Role"));
+	// }
 }
 
 
@@ -94,7 +84,14 @@ void UAuraHeroComponent::AttackEnd()
 		GEngine->AddOnScreenDebugMessage(-1, 3.f, FColor::Blue, Msg
 		);
 		MakeAttackAdsorption();
-		OwnerCharacter->PlayAnimMontage(AttackMontage, 2.f, AttackMontage->GetSectionName(CurrentAttackMontageSection));
+		if(CurrentAttackMontageSection == AttackMontage->GetNumSections() - 1)
+		{
+			OwnerCharacter->PlayAnimMontage(AttackMontage, 1.f, AttackMontage->GetSectionName(CurrentAttackMontageSection));
+		}
+		else
+		{
+			OwnerCharacter->PlayAnimMontage(AttackMontage, 2.f, AttackMontage->GetSectionName(CurrentAttackMontageSection));
+		}
 	}
 	else if (!bWantContinueAttack)
 	{

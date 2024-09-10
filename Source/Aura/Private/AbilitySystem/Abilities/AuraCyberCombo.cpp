@@ -22,6 +22,7 @@ void UAuraCyberCombo::ActivateAbility(const FGameplayAbilitySpecHandle Handle,
 		UAuraHeroComponent* AuraHeroComponent = AvatarActor->GetCombatComponent();
 		AuraHeroComponent->ClientAttack();
 	}
+	CommitAbilityCooldown(Handle, ActorInfo, ActivationInfo, true);
 	EndAbility(Handle, ActorInfo, ActivationInfo, true, true);
 }
 
